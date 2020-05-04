@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Networking.Transport;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ServerBehaviour : MonoBehaviour
 {
@@ -63,7 +64,9 @@ public class ServerBehaviour : MonoBehaviour
     }
 
 
-    public void StartServer() {
+    public void StartServer(Button startServerButton = null) {
+
+
         m_driver = NetworkDriver.Create();
         NetworkEndPoint endpoint = NetworkEndPoint.AnyIpv4;
         endpoint.Port = 42424;
@@ -74,6 +77,11 @@ public class ServerBehaviour : MonoBehaviour
         else {
             m_driver.Listen();
             Debug.Log("Server Listening...");
+
+            if (startServerButton != null)
+                startServerButton.interactable = false;
+
+
         }
 
         m_connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
