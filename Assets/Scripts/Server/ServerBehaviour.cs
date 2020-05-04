@@ -21,6 +21,10 @@ public class ServerBehaviour : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            StartServer();
+        }
+
         if (m_driver.IsCreated) {
 
             m_driver.ScheduleUpdate().Complete();
@@ -29,7 +33,7 @@ public class ServerBehaviour : MonoBehaviour
             for (int i = 0; i < m_connections.Length; i++) {
                 if (!m_connections[i].IsCreated) {
                     m_connections.RemoveAtSwapBack(i);
-                    i--;
+                    --i;
                 }
             }
 
@@ -65,11 +69,11 @@ public class ServerBehaviour : MonoBehaviour
 
     public void StartServer() {
         m_driver = NetworkDriver.Create();
-        NetworkEndPoint endpoint = NetworkEndPoint.AnyIpv4;
-        endpoint.Port = 42424;
+        var endpoint = NetworkEndPoint.AnyIpv4;
+        endpoint.Port = 42422;
 
         if (m_driver.Bind(endpoint) != 0) {
-            Debug.Log("Failed to bind server to port 42424");
+            Debug.Log("Failed to bind server to port " + endpoint.Port);
         }
         else {
             m_driver.Listen();
