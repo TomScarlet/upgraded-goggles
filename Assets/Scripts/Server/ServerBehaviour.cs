@@ -73,7 +73,7 @@ public class ServerBehaviour : MonoBehaviour
         endpoint.Port = 42424;
 
         if (m_driver.Bind(endpoint) != 0) {
-            Debug.Log("Failed to bind server to port 42424");
+            Debug.Log("Failed to bind server to port " + endpoint.Port);
         }
         else {
             m_driver.Listen();

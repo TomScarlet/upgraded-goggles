@@ -47,19 +47,19 @@ public class UI_Manager : MonoBehaviour
     public void SetScreen(E_Screens scr) {
         switch (scr) {
             case E_Screens.Lobby:
+                lobbyScreen.SetActive(true);
                 modeSelectScreen.SetActive(false);
                 headlessServerScreen.SetActive(false);
-                lobbyScreen.SetActive(true);
                 break;
             case E_Screens.ModeSelect:
                 lobbyScreen.SetActive(false);
-                headlessServerScreen.SetActive(false);
                 modeSelectScreen.SetActive(true);
+                headlessServerScreen.SetActive(false);
                 break;
             case E_Screens.HeadlessServer:
-                headlessServerScreen.SetActive(true);
-                modeSelectScreen.SetActive(false);
                 lobbyScreen.SetActive(false);
+                modeSelectScreen.SetActive(false);
+                headlessServerScreen.SetActive(true);
                 break;
         }
     }
