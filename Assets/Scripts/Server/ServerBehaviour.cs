@@ -14,6 +14,7 @@ public class ServerBehaviour : MonoBehaviour
 
     void Start() {
         
+
     }
 
 
@@ -78,9 +79,12 @@ public class ServerBehaviour : MonoBehaviour
             m_driver.Listen();
             Debug.Log("Server Listening...");
 
-            if (startServerButton != null)
-                startServerButton.interactable = false;
+            
 
+            if (startServerButton != null) {
+                startServerButton.interactable = false;
+                startServerButton.transform.GetComponentInChildren<Text>().text = "Server running...";
+            }
 
         }
 

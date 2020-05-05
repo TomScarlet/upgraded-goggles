@@ -20,14 +20,20 @@ public class ClientBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            m_Driver = NetworkDriver.Create();
-            m_Connection = default(NetworkConnection);
+        /*if (Input.GetKeyDown(KeyCode.Space)) {
+            StartClient();
+        }*/
+    }
 
-            NetworkEndPoint endpoint = NetworkEndPoint.LoopbackIpv4;
-            endpoint.Port = 42424;
-            m_Connection = m_Driver.Connect(endpoint);
-        }
+    public void StartClient() {
+        m_Driver = NetworkDriver.Create();
+        m_Connection = default(NetworkConnection);
+
+        NetworkEndPoint endpoint = NetworkEndPoint.LoopbackIpv4;
+        endpoint.Port = 42424;
+        m_Connection = m_Driver.Connect(endpoint);
+
+        UI_Manager.Instance.SetScreen(E_Screens.Lobby);
     }
 
 
